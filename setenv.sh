@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+export TEST_PATH=$PWD
+
+# Set ROCM_PATH to where ROCm is installed.
+export ROCM_PATH=/opt/rocm
+
+export LIB_PATH=$ROCM_PATH/lib
+export LD_LIBRARY_PATH=$LIB_PATH
+
+export OMP_PLACES=threads
+export OMP_NUM_THREADS=2
+export ROCPROFSYS_CONFIG_FILE=$TEST_PATH/rocprof-sys.cfg
+export ROCPROFSYS_DEBUG_SETTINGS=1
+export ROCPROFSYS_USE_PROCESS_SAMPLING=ON
+export ROCPROFSYS_USE_AMD_SMI=ON
+export ROCPROFSYS_USE_PID=ON
+export ROCPROFSYS_AINIC_STAT_ENABLED=ON
+export ROCPROFSYS_TRACE_LEGACY=ON
