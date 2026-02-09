@@ -26,11 +26,11 @@ rm -rf rocprofsys-tests-output
 
 # List of NICs: all
 # echo List of NICs: all
-# $BINDIR/rocprof-sys-sample --gpus=0,1 --ainics=all --device -- wget -O /dev/null --no-check-certificate $URL1 $U>
+# $BINDIR/rocprof-sys-sample --gpus=0,1 --ainics=all --device -- wget -O /dev/null --no-check-certificate $URL1 $URL2
 
 # List of NICs: none
 # echo List of NICs: none
-# $BINDIR/rocprof-sys-sample --gpus=0,1 --ainics=none --device -- wget -O /dev/null --no-check-certificate $URL1 $U>
+# $BINDIR/rocprof-sys-sample --gpus=0,1 --ainics=none --device -- wget -O /dev/null --no-check-certificate $URL1 $URS2
 
 # Repeated NIC
 # echo List of NICs with a duplicate and wrong NIC
