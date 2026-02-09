@@ -17,15 +17,15 @@ directory where these files are and run setenv.sh to set up the environment:
 [runtest.sh](https://github.com/ajanicijamd/ainictest/blob/main/runtest.sh) is a Bash
 script for running rocprof-sys-sample for profiling. It demonstrates one possible way to
 test AI NIC profiling: running rocprof-sys-sample with wget as the program to sample.
-The list of NICs is passed to rocprof-sys-sample via --ainics. An example command looks
+The list of NICs is passed to rocprof-sys-sample via --ai-nics. An example command looks
 like this:
 
-    rocprof-sys-sample --gpus=0,1 --ainics=enp229s0 --device -- wget -O /dev/null --no-check-certificate $URL1 $URL2
+    rocprof-sys-sample --gpus=0,1 --ai-nics=enp229s0 --device -- wget -O /dev/null --no-check-certificate $URL1 $URL2
 
 where we pass in one NIC (enp229s0) in the parameter.
 
 The list of NICs passed in via variable ROCPROFSYS_SAMPLING_AINICS and command line parameter
---ainics can be:
+--ai-nics can be:
 
 - In the form nic1,nic2,nic3 - comma-separated list of NICs
 - all - profile all available NICs
@@ -35,6 +35,4 @@ This list of NICs can be specified in three ways, from the lowest to the highest
 
 - In ROCPROFSYS_SAMPLING_AINICS in a configuration file
 - In ROCPROFSYS_SAMPLING_AINICS in the environment
-- In the command line parameter --ainics
-
-
+- In the command line parameter --ai-nics

@@ -18,21 +18,21 @@ rm -rf rocprofsys-tests-output
 
 # Wrong NIC
 # echo Test Wrong NIC
-# $BINDIR/rocprof-sys-sample --gpus=0,1 --ainics=wrongnic --device -- wget -O /dev/null --no-check-certificate $URL1 $URL2
+# $BINDIR/rocprof-sys-sample --gpus=0,1 --ai-nics=wrongnic --device -- wget -O /dev/null --no-check-certificate $URL1 $URL2
 
 # Right NIC
 # echo Test one NIC
-# $BINDIR/rocprof-sys-sample --gpus=0,1 --ainics=enp229s0 --device -- wget -O /dev/null --no-check-certificate $URL1 $URL2
+# $BINDIR/rocprof-sys-sample --gpus=0,1 --ai-nics=enp229s0 --device -- wget -O /dev/null --no-check-certificate $URL1 $URL2
 
 # List of NICs: all
 # echo List of NICs: all
-# $BINDIR/rocprof-sys-sample --gpus=0,1 --ainics=all --device -- wget -O /dev/null --no-check-certificate $URL1 $URL2
+# $BINDIR/rocprof-sys-sample --gpus=0,1 --ai-nics=all --device -- wget -O /dev/null --no-check-certificate $URL1 $URL2
 
 # List of NICs: none
 # echo List of NICs: none
-# $BINDIR/rocprof-sys-sample --gpus=0,1 --ainics=none --device -- wget -O /dev/null --no-check-certificate $URL1 $URS2
+# $BINDIR/rocprof-sys-sample --gpus=0,1 --ai-nics=none --device -- wget -O /dev/null --no-check-certificate $URL1 $URS2
 
 # Repeated NIC
 # echo List of NICs with a duplicate and wrong NIC
-$BINDIR/rocprof-sys-sample --gpus=0,1 --ainics="enp229s0,wrongnic,enp229s0" \
+$BINDIR/rocprof-sys-sample --gpus=0,1 --ai-nics="enp229s0,wrongnic,enp229s0" \
   --device -- wget -O /dev/null --no-check-certificate $URL1 $URL2
