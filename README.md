@@ -36,3 +36,46 @@ This list of NICs can be specified in three ways, from the lowest to the highest
 - In ROCPROFSYS_SAMPLING_AINICS in a configuration file
 - In ROCPROFSYS_SAMPLING_AINICS in the environment
 - In the command line parameter --ai-nics
+
+
+## pytest ? End-to-End Track Validation
+
+The [`pytest/`](pytest/) directory contains a self-contained pytest suite that verifies
+all 10 AI NIC RDMA counter tracks are correctly written to both the Perfetto trace
+(`.proto`) and the ROCpd database (`.db`) by rocprofiler-systems.
+
+This is used to prove that the fix in `cache_policy.hpp` (added in
+`rocm-systems` develop on June 16, 2026) is effective: before the fix, 4 of the 10
+tracks were silently absent from every output file.
+
+### The 10 RDMA tracks
+
+| Track name | Description |
+|---|---|
+| `ainic_rx_rdma_ucast_bytes` | Received unicast bytes |
+| `ainic_tx_rdma_ucast_bytes` | Transmitted unicast bytes |
+| `ainic_rx_rdma_ucast_pkts` | Received unicast packets |
+| `ainic_tx_rdma_ucast_pkts` | Transmitted unicast packets |
+| `ainic_rx_rdma_cnp_pkts` | Received CNP (congestion) packets |
+| `ainic_tx_rdma_cnp_pkts` | Transmitted CNP packets |
+| `ainic_tx_rdma_ack_timeout` | Local ACK timeout errors *(previously missing)* |
+| `ainic_resp_tx_pkt_seq_err` | Responder packet sequence errors *(previously missing)* |
+| `ainic_req_rx_pkt_seq_err` | Requester packet sequence errors *(previously missing)* |
+| `ainic_req_rx_impl_nak_seq_err` | Requester implicit NAK sequence errors *(previously missing)* |
+
+### Quick start
+
+```bash
+cd pytest
+pip install -r requirements.txt
+
+# With rocprof-sys-sample already on PATH (installed from /opt/rocm):
+pytest test_ainic_perf.py -v -m ainic
+
+# Or, pointing at a custom build directory:
+ROCPROFSYS_BUILD_DIR=/path/to/rocprofiler-systems/build \
+    pytest test_ainic_perf.py -v -m ainic
+```
+
+See [`pytest/README.md`](pytest/README.md) for full details, including how to run
+against the AI NIC simulator (no real hardware required).
