@@ -79,9 +79,9 @@ def ainic_download_url_2() -> str:
 
 
 @pytest.fixture
-def ainic_rocpd_rules(validation_rules_dir) -> list[Path]:
+def ainic_rocpd_rules() -> list[Path]:
     """Validation rules for AI NIC RDMA track presence in ROCpd database."""
-    rules_dir = validation_rules_dir / "ainic"
+    rules_dir = Path(__file__).parent / "rocpd-validation-rules" / "ainic"
     return [rules_dir / "ainic-rdma-rules.json"]
 
 
