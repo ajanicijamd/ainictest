@@ -1732,7 +1732,17 @@ def gpu_info() -> GPUInfo:
 
 @pytest.fixture(scope="session")
 def tests_dir(rocprof_config) -> Path:
-    """Path to tests directory."""
+    """Path to tests directory.
+
+    Prefer the directory bundled alongside this conftest (contains
+    validate-rocpd.py, validate-perfetto-proto.py, etc.) so this
+    standalone project works without a full rocprofiler-systems
+    installation.  Fall back to the config-derived path so a normal
+    CMake build/install still works.
+    """
+    local = Path(__file__).parent
+    if (local / "validate-rocpd.py").exists():
+        return local
     return rocprof_config.rocprofsys_tests_dir
 
 
